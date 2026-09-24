@@ -43,15 +43,3 @@ Scéna podle tutoriálu **Blender Guru**:
 2. *Subdivision Surface* a stejný keramický materiál.
 
 **Scéna:** dřevěný stůl (procedurální textura), 3 plošná světla (key, fill, rim), kamera 55 mm s hloubkou ostrosti, render v Cycles.
-
-## Jak vygenerovat znovu
-
-```bash
-# s nainstalovaným Blenderem 5.x
-blender -b -P build_donut.py
-
-# nebo s Python modulem bpy (Python 3.11)
-pip install bpy==5.0.1
-python build_donut.py              # uloží donut.blend a vyrenderuje donut-preview.png
-python build_donut.py --no-render  # jen donut.blend
-```
