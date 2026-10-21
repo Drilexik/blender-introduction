@@ -28,9 +28,12 @@ Scéna podle tutoriálu **Blender Guru**:
 3. Modifikátory: *Subdivision Surface → Shrinkwrap* (na donut) *→ Solidify* (tloušťka ~3 mm).
 
 **Posypka (Sprinkles)**
-1. Kolekce `Sprinkles` s 6 barevnými posypkami (válec se zaoblenými konci). Kolekce je skrytá.
+1. Kolekce `Sprinkles` se 6 tvary: dlouhý váleček, krátký váleček, kužel, kulička, kostička
+   a plochý disk (konfeta). Kolekce je skrytá.
 2. *Geometry Nodes* na polevě: *Distribute Points on Faces* (Poisson) jen na plochách, které míří nahoru,
-   *Instance on Points* s *Pick Instance*, náhodná rotace kolem normály a náhodná velikost.
+   *Instance on Points* s *Pick Instance* (náhodný tvar), náhodná rotace kolem normály a náhodná velikost.
+3. Jeden společný materiál: *Object Info → Random → Color Ramp* (Constant, 8 barev),
+   takže každý kousek posypky má jinou barvu.
 
 **Šálek**
 1. Profil válce: vytlačení (*extrude*), zúžení, okraj a vnitřní stěna. Tloušťka stěny je modelovaná.

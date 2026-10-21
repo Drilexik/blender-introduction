@@ -253,10 +253,14 @@ def build_icing_mesh(donut_mesh):
     return mesh
 
 
-def build_sprinkles_collection():
-    """A few coloured sprinkles (cylinder with rounded ends) in a hidden collection."""
-    coll = bpy.data.collections.new("Sprinkles")
-    bpy.context.scene.collection.children.link(coll)
+def sprinkles_material():
+    """One material for all sprinkles: every instance gets its own colour
+    from Object Info > Random through a Color Ramp set to Constant."""
+    mat = principled("Sprinkles", (0.9, 0.9, 0.9), 0.3)
+    nt = mat.node_tree
+    info = nt.nodes.new("ShaderNodeObjectInfo")
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.color_ramp.interpolation = "CONSTANT"
     colors = [
         (0.95, 0.95, 0.92),  # white
         (0.98, 0.75, 0.10),  # yellow
@@ -264,19 +268,74 @@ def build_sprinkles_collection():
         (0.15, 0.70, 0.30),  # green
         (0.90, 0.10, 0.35),  # raspberry
         (0.95, 0.40, 0.05),  # orange
+        (0.55, 0.20, 0.80),  # purple
+        (0.40, 0.85, 0.90),  # light blue
     ]
-    length, radius = 0.0065, 0.0008
-    profile = [(0.0, -length / 2), (radius * 0.8, -length / 2),
-               (radius, -length / 2 + radius * 0.8),
-               (radius, length / 2 - radius * 0.8),
-               (radius * 0.8, length / 2), (0.0, length / 2)]
-    for idx, col in enumerate(colors):
-        mesh = lathe(f"Sprinkle.{idx:03d}", profile, 8)
-        mesh.transform(Matrix.Rotation(math.pi / 2, 4, "Y"))
-        obj = new_object(f"Sprinkle.{idx:03d}", mesh, coll)
-        add_subsurf(obj, 1, 2)
-        obj.data.materials.append(principled(f"Sprinkle {idx}", col, 0.3))
-        obj.location.x = idx * 0.01
+    elements = ramp.color_ramp.elements
+    while len(elements) < len(colors):
+        elements.new(0.5)
+    for i, (el, col) in enumerate(zip(elements, colors)):
+        el.position = i / len(colors)
+        el.color = (*col, 1.0)
+    nt.links.new(info.outputs["Random"], ramp.inputs["Fac"])
+    nt.links.new(ramp.outputs["Color"], nt.nodes["Principled BSDF"].inputs["Base Color"])
+    return mat
+
+
+def build_sprinkles_collection():
+    """Sprinkles of different shapes (cylinder, cone, ball, cube, flat disc)
+    in a hidden collection. Long shapes lie along X, the instance Z axis
+    follows the icing normal."""
+    coll = bpy.data.collections.new("Sprinkles")
+    bpy.context.scene.collection.children.link(coll)
+    mat = sprinkles_material()
+    lie_down = Matrix.Rotation(math.pi / 2, 4, "Y")
+
+    def add(name, mesh, subsurf=1, rotate=True):
+        if rotate:
+            mesh.transform(lie_down)
+        obj = new_object(name, mesh, coll)
+        if subsurf:
+            add_subsurf(obj, subsurf, subsurf + 1)
+        obj.data.materials.append(mat)
+        obj.location.x = len(coll.objects) * 0.01
+        return obj
+
+    # cylinder (classic sprinkle) with slightly rounded ends
+    length, r = 0.0065, 0.0008
+    add("Sprinkle cylinder", lathe("Sprinkle cylinder", [
+        (0.0, -length / 2), (r * 0.8, -length / 2), (r, -length / 2 + r * 0.6),
+        (r, length / 2 - r * 0.6), (r * 0.8, length / 2), (0.0, length / 2)], 8))
+
+    # short thick cylinder
+    add("Sprinkle short cylinder", lathe("Sprinkle short cylinder", [
+        (0.0, -0.0018), (0.0011, -0.0018), (0.0012, -0.0012),
+        (0.0012, 0.0012), (0.0011, 0.0018), (0.0, 0.0018)], 10))
+
+    # cone
+    add("Sprinkle cone", lathe("Sprinkle cone", [
+        (0.0, -0.0022), (0.0013, -0.0022), (0.0014, -0.0016),
+        (0.0007, 0.0008), (0.0, 0.0024)], 10), subsurf=0)
+
+    # ball
+    rb = 0.0012
+    add("Sprinkle ball", lathe("Sprinkle ball", [
+        (rb * math.sin(math.pi * i / 8), -rb * math.cos(math.pi * i / 8))
+        for i in range(9)], 12), subsurf=0, rotate=False)
+
+    # cube
+    bm = bmesh.new()
+    bmesh.ops.create_cube(bm, size=0.0022)
+    cube = bpy.data.meshes.new("Sprinkle cube")
+    bm.to_mesh(cube)
+    bm.free()
+    add("Sprinkle cube", cube, subsurf=0, rotate=False)
+
+    # flat disc (confetti)
+    add("Sprinkle disc", lathe("Sprinkle disc", [
+        (0.0, 0.0004), (0.0018, 0.0004), (0.0020, 0.0),
+        (0.0018, -0.0004), (0.0, -0.0004)], 16), subsurf=0, rotate=False)
+
     # hide the source collection like in the tutorial
     bpy.context.view_layer.layer_collection.children["Sprinkles"].exclude = True
     return coll
