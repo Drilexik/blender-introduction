@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="150" viewBox="0 0 220 150">
+  <!-- tail fin -->
+  <path id="tail" fill="#E85D04"
+        d="M58 75 C44 60 26 40 8 30 C14 50 18 64 18 75 C18 86 14 100 8 120 C26 110 44 90 58 75 Z"/>
+  <!-- dorsal fin -->
+  <path id="fin-top" fill="#E85D04"
+        d="M84 42 C92 18 122 10 142 22 C134 28 130 36 128 44 Z"/>
+  <!-- belly fin -->
+  <path id="fin-bottom" fill="#E85D04"
+        d="M100 106 C104 124 118 132 132 130 C126 122 124 114 124 106 Z"/>
+  <!-- body -->
+  <path id="body" fill="#FB8B24"
+        d="M48 75 C66 44 104 32 140 36 C172 40 196 56 204 75 C196 94 172 110 140 114
+           C104 118 66 106 48 75 Z"/>
+  <!-- stripes -->
+  <path id="stripe-1" fill="#FFF1E0"
+        d="M150 40 C140 58 140 92 150 110 C156 110 160 109 164 108 C154 90 154 60 164 42
+           C160 41 155 40 150 40 Z"/>
+  <path id="stripe-2" fill="#FFF1E0"
+        d="M98 42 C86 60 86 90 98 108 C103 110 108 111 112 112 C100 92 100 58 112 39
+           C107 40 102 41 98 42 Z"/>
+  <!-- side fin -->
+  <path id="fin-side" fill="#E85D04"
+        d="M128 80 C122 92 112 100 100 102 C106 92 112 84 120 76 Z"/>
+  <!-- eye -->
+  <circle id="eye-white" fill="#FFFFFF" cx="176" cy="66" r="9"/>
+  <circle id="eye-pupil" fill="#1B1B2F" cx="178" cy="66" r="4.5"/>
+  <!-- bubbles -->
+  <circle id="bubble-1" fill="#8ECAE6" cx="210" cy="40" r="5"/>
+  <circle id="bubble-2" fill="#8ECAE6" cx="200" cy="22" r="3.5"/>
+  <circle id="bubble-3" fill="#8ECAE6" cx="212" cy="8" r="2.5"/>
+</svg>

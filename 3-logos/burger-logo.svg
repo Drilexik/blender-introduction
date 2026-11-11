@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="180" viewBox="0 0 200 180">
+  <!-- bottom bun -->
+  <path id="bun-bottom" fill="#F2A541"
+        d="M24 136 L176 136 C182 136 184 140 182 146 C178 160 168 168 152 168 L48 168
+           C32 168 22 160 18 146 C16 140 18 136 24 136 Z"/>
+  <!-- patty -->
+  <path id="patty" fill="#7B3F1E"
+        d="M22 106 L178 106 C188 106 192 112 192 119 C192 126 188 132 178 132 L22 132
+           C12 132 8 126 8 119 C8 112 12 106 22 106 Z"/>
+  <!-- cheese with drips -->
+  <path id="cheese" fill="#FFD23F"
+        d="M14 94 L186 94 L186 104 L160 104 L150 120 L140 104 L70 104 L58 124 L46 104 L14 104 Z"/>
+  <!-- lettuce (wavy) -->
+  <path id="lettuce" fill="#6CC04A"
+        d="M10 84 C20 76 30 92 42 84 C54 76 64 92 76 84 C88 76 98 92 110 84
+           C122 76 132 92 144 84 C156 76 166 92 178 84 C186 79 192 84 190 90
+           C180 98 170 86 158 94 C146 102 136 88 124 96 C112 104 102 88 90 96
+           C78 104 68 88 56 96 C44 104 34 88 22 96 C12 102 4 92 10 84 Z"/>
+  <!-- top bun (dome) -->
+  <path id="bun-top" fill="#F2A541"
+        d="M16 76 C14 40 56 12 100 12 C144 12 186 40 184 76 C184 82 180 84 174 84 L26 84
+           C20 84 16 82 16 76 Z"/>
+  <!-- sesame seeds -->
+  <ellipse id="seed-1" fill="#FFF4DA" cx="62" cy="40" rx="6" ry="3.2" transform="rotate(-25 62 40)"/>
+  <ellipse id="seed-2" fill="#FFF4DA" cx="96" cy="30" rx="6" ry="3.2" transform="rotate(10 96 30)"/>
+  <ellipse id="seed-3" fill="#FFF4DA" cx="132" cy="38" rx="6" ry="3.2" transform="rotate(30 132 38)"/>
+  <ellipse id="seed-4" fill="#FFF4DA" cx="44" cy="62" rx="6" ry="3.2" transform="rotate(-40 44 62)"/>
+  <ellipse id="seed-5" fill="#FFF4DA" cx="80" cy="56" rx="6" ry="3.2" transform="rotate(-5 80 56)"/>
+  <ellipse id="seed-6" fill="#FFF4DA" cx="118" cy="58" rx="6" ry="3.2" transform="rotate(20 118 58)"/>
+  <ellipse id="seed-7" fill="#FFF4DA" cx="154" cy="60" rx="6" ry="3.2" transform="rotate(40 154 60)"/>
+</svg>
