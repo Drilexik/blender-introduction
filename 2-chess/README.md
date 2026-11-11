@@ -15,16 +15,22 @@ Zadání: [PGC – úloha 2](https://mirka.valik.sk/pgc/uloha_2/)
 | Soubor | Popis |
 | --- | --- |
 | `chess-piece.blend` | Kůň ve studiové scéně (Blender 5.0+) |
-| `chess-piece-preview.png` | Render koně (Cycles, 1600 × 1200) |
+| `chess-piece-preview.png` | Kůň: hlavní pohled (Cycles, 1600 × 1200) |
+| `chess-piece-profile.png` | Kůň: pohled z profilu |
+| `chess-piece-top.png` | Kůň: pohled shora |
 | `chessboard.blend` | Šachovnice s figurkami (textura je zabalená uvnitř) |
 | `chessboard-preview.png` | Kamera 1: hlavní pohled |
 | `chessboard-top.png` | Kamera 2: pohled shora |
 | `chessboard-closeup.png` | Kamera 3: detail koní f3 a f6 |
 | `chessboard-side.png` | Kamera 4: pohled z boku |
 
-| Kůň | Shora | Detail | Z boku |
-| --- | --- | --- | --- |
-| ![](chess-piece-preview.png) | ![](chessboard-top.png) | ![](chessboard-closeup.png) | ![](chessboard-side.png) |
+| Kůň | Kůň z profilu | Kůň shora |
+| --- | --- | --- |
+| ![](chess-piece-preview.png) | ![](chess-piece-profile.png) | ![](chess-piece-top.png) |
+
+| Šachovnice shora | Detail koní | Z boku |
+| --- | --- | --- |
+| ![](chessboard-top.png) | ![](chessboard-closeup.png) | ![](chessboard-side.png) |
 
 ---
 
@@ -44,8 +50,17 @@ Zadání: [PGC – úloha 2](https://mirka.valik.sk/pgc/uloha_2/)
 4. Převod na mesh (*Object → Convert → Mesh*), vyhlazení (*Smooth Vertices*) a spojení
    s podstavcem (*Ctrl+J*).
 
-**Studiová scéna**: zaoblené pozadí (*cyclorama*), druhý (černý) kůň jako linked duplicate
-(*Alt+D*), tříbodové osvětlení (key, fill, rim) a kamery `main`, `profile` a `top`.
+**Studiová scéna**
+- Zaoblené pozadí (*cyclorama*), druhý (černý) kůň jako linked duplicate (*Alt+D*).
+- Světla:
+  - **Sun** (úhel 2,5°): hlavní světlo s ostrým stínem,
+  - **Key light** (plošné): měkké přisvětlení zepředu,
+  - **Fill light**: studené světlo, prosvětlí stíny,
+  - **Rim light** (kruhové, zezadu): obrys hlavy a hřívy.
+- Kamery na timeline markerech (snímky 1–3):
+  - `Camera - main`: 70 mm, f/4,
+  - `Camera - profile`: 85 mm, z boku,
+  - `Camera - top`: shora.
 
 ## Část 2: Šachovnice
 
