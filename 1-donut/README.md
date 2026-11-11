@@ -12,7 +12,13 @@ Scéna podle tutoriálu **Blender Guru**:
 | Soubor | Popis |
 | --- | --- |
 | `donut.blend` | Blender soubor se scénou (Blender 5.0+) |
-| `donut-preview.png` | Render scény (Cycles, 1600 × 1000) |
+| `donut-preview.png` | Kamera 1: hlavní pohled (Cycles, 1600 × 1000) |
+| `donut-top.png` | Kamera 2: pohled shora |
+| `donut-closeup.png` | Kamera 3: detail donutu s hloubkou ostrosti |
+
+| Shora | Detail |
+| --- | --- |
+| ![](donut-top.png) | ![](donut-closeup.png) |
 
 ## Postup modelování (principy z videa)
 
@@ -44,4 +50,19 @@ Scéna podle tutoriálu **Blender Guru**:
 1. Profil válce s prohlubní pro šálek, zvednutým okrajem a spodní nožkou.
 2. *Subdivision Surface* a stejný keramický materiál.
 
-**Scéna:** dřevěný stůl (procedurální textura), 3 plošná světla (key, fill, rim), kamera 55 mm s hloubkou ostrosti, render v Cycles.
+## Světla, stíny a kamery
+
+Pod scénou je dřevěný stůl (procedurální textura).
+
+| Světlo | Typ | Účel |
+| --- | --- | --- |
+| Sun (key light) | Sun, úhel 3° | hlavní teplé světlo zleva, ostré stíny donutu i hrnku |
+| Fill light | Area 0,6 m | studené světlo zprava, prosvětlí stíny |
+| Rim light | Area 0,3 m | zezadu, světlý obrys polevy a okraje hrnku |
+
+Kamery jsou navázané na timeline markery (snímky 1–3, *Marker → Bind Camera to Markers*):
+1. `Camera 1 - main`: 55 mm, hloubka ostrosti
+2. `Camera 2 - top`: pohled shora
+3. `Camera 3 - closeup`: 70 mm, f/4, ostří na přední okraj polevy
+
+Render: Cycles, 160 samplů, denoising, AgX.
